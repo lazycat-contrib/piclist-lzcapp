@@ -6,15 +6,15 @@ description: 强大的云存储与图床管理工具
 homepage: https://github.com/Kuingsmile/PicList
 author: Kuingsmile
 application:
-    subdomain: piclist
-    background: true
-    public_path:
-        - /
-    routes:
-        - /=http://piclist:36677
+  subdomain: piclist
+  background: true
+  public_path:
+    - /
+  routes:
+    - /=http://piclist:36677
 services:
-    piclist:
-        image: registry.lazycat.cloud/czyt/kuingsmile/piclist:03caa9b24640f9bf
-        binds:
-            - /lzcapp/var/data:/root/.piclist
-        command: node /usr/local/bin/picgo-server -k piclist123456
+  piclist:
+    image: registry.lazycat.cloud/czyt/kuingsmile/piclist:03caa9b24640f9bf
+    binds:
+      - /lzcapp/var/data:/root/.piclist
+    command: /lzcapp/pkg/content/startup.sh
