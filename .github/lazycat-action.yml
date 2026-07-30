@@ -1,0 +1,51 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: build/piclist.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: piclist
+
+build:
+  toolchains: []
+  run_buildscript: false
+
+images:
+  - id: piclist
+    target: service
+    service: piclist
+    source: docker.io/kuingsmile/piclist
+    channel: stable
+    tag_regex: '^v[0-9]+\.[0-9]+\.[0-9]+$'
+    delivery:
+      mode: lazycat
+
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    create_if_missing: true
+    changelog_locales: [zh, en]
+    retry:
+      enabled: false
+      max_attempts: 3
+      initial_delay: 2s
+      max_delay: 30s
+    application:
+      language: zh
+      name: PicList
+      source: https://github.com/Kuingsmile/PicList
+      source_author: Kuingsmile
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: PicList
+    summary: "PicList LazyCat package published from GitHub Actions."
