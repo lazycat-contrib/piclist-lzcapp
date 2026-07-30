@@ -16,7 +16,8 @@ application:
 services:
   piclist:
     # kuingsmile/piclist:v1.9.11
-    image: registry.lazycat.cloud/czyt/kuingsmile/piclist:03caa9b24640f9bf
+    # upstream: docker.io/kuingsmile/piclist:v2.4.2
+    image: registry.lazycat.cloud/czyt/kuingsmile/piclist:edb7baa1fb548486
     binds:
       - /lzcapp/var/data:/root/.piclist
     command: /lzcapp/pkg/content/startup.sh
